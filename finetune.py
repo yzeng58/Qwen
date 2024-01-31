@@ -375,5 +375,3 @@ def train(
     safe_save_model_for_hf_trainer(trainer=trainer, output_dir=training_args.output_dir, bias=lora_args.lora_bias)
 
 
-if __name__ == "__main__":
-    train()
