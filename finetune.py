@@ -253,18 +253,23 @@ def make_supervised_data_module(
     return dict(train_dataset=train_dataset, eval_dataset=eval_dataset)
 
 
-def train():
+def train(
+    model_args,
+    data_args,
+    training_args,
+    lora_args,
+):
     global local_rank
 
-    parser = transformers.HfArgumentParser(
-        (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
-    )
-    (
-        model_args,
-        data_args,
-        training_args,
-        lora_args,
-    ) = parser.parse_args_into_dataclasses()
+    # parser = transformers.HfArgumentParser(
+    #     (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
+    # )
+    # (
+    #     model_args,
+    #     data_args,
+    #     training_args,
+    #     lora_args,
+    # ) = parser.parse_args_into_dataclasses()
 
     # This serves for single-gpu qlora.
     if getattr(training_args, 'deepspeed', None) and int(os.environ.get("WORLD_SIZE", 1))==1:
